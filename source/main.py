@@ -31,7 +31,4 @@ label[0, 0, 0, 22] = 0.611
 label[0, 0, 0, 23] = 0.4164305949008499
 label[0, 0, 0, 24] = 0.262
 
-# iou.shape = (1, 7, 7, 1)
-iou = utils.intersection_over_union(output, label, box_format='midpoint')
-
 yololoss(output, label)

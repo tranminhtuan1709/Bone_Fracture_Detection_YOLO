@@ -7,7 +7,7 @@ from PIL import Image
 class VOCDataset(torch.utils.data.Dataset):
     def __init__(
         self, csv_file: str, img_dir: str, label_dir: str,
-        S=7, B=2, C=20,
+        S=7, B=2, C=1,
         transform=None,
     ) -> None:
         '''
@@ -112,16 +112,16 @@ class VOCDataset(torch.utils.data.Dataset):
 
             # Check if the cell already contains a bounding box.
             # This means there is only one bounding box in a cell.
-            if label_matrix[i, j, 20] == 0:
+            if label_matrix[i, j, 1] == 0:
                 # Set that there exists an object.
-                label_matrix[i, j, 20] = 1
+                label_matrix[i, j, 1] = 1
 
                 # Box coordinates.
                 box_coordinates = torch.tensor(
                     [x_cell, y_cell, width_cell, height_cell]
                 )
 
-                label_matrix[i, j, 21:25] = box_coordinates
+                label_matrix[i, j, 2:6] = box_coordinates
 
                 # Set one hot encoding for class_label.
                 label_matrix[i, j, class_label] = 1
