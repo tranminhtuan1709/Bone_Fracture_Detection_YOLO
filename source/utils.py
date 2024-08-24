@@ -248,6 +248,8 @@ def get_bboxes(
     model.eval()
     train_idx = 0
 
+    print('Len of loader', len(loader))
+
     for batch_idx, (x, labels) in enumerate(loader):
         x = x.to(device)
         labels = labels.to(device)
