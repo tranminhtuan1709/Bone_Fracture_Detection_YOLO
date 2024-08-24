@@ -247,7 +247,6 @@ def get_bboxes(
     # make sure model is in eval before get bboxes
     model.eval()
     train_idx = 0
-    print('Len of loader', len(loader))
 
     for batch_idx, (x, labels) in enumerate(loader):
         x = x.to(device)
@@ -334,7 +333,7 @@ def cellboxes_to_boxes(out, S=7):
 
     return all_bboxes
 
-def save_checkpoint(state, filename="/kaggle/working//my_checkpoint.pth"):
+def save_checkpoint(state, filename="/kaggle/working/my_checkpoint.pth"):
     print("=> Saving checkpoint")
     torch.save(state, filename)
 

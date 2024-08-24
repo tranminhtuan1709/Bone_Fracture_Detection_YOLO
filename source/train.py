@@ -31,8 +31,8 @@ NUM_WORKERS = 2
 PIN_MEMORY = True
 LOAD_MODEL = False
 LOAD_MODEL_FILE = "overfit.pth"
-IMG_DIR = "/kaggle/input/bone-fracture-dataset/Bone Fracture Dataset YOLOv8/train/images"
-LABEL_DIR = "/kaggle/input/bone-fracture-dataset/Bone Fracture Dataset YOLOv8/train/labels"
+IMG_DIR = "/kaggle/input/bone-fracture-dataset-yolo/dataset/train/images"
+LABEL_DIR = "/kaggle/input/bone-fracture-dataset-yolo/dataset/train/labels"
 
 
 class Compose(object):
@@ -77,17 +77,21 @@ def main():
 
     if LOAD_MODEL:
         load_checkpoint(torch.load(LOAD_MODEL_FILE), model, optimizer)
+    
+    print('Loading dataset!')
 
     train_dataset = VOCDataset(
-        "/kaggle/input/bone-fracture-dataset/Bone Fracture Dataset YOLOv8/train.csv",
+        "/kaggle/input/bone-fracture-dataset-yolo/dataset/train.csv",
         transform=transform,
         img_dir=IMG_DIR,
         label_dir=LABEL_DIR,
     )
 
     test_dataset = VOCDataset(
-        "/kaggle/input/bone-fracture-dataset/Bone Fracture Dataset YOLOv8/test.csv", transform=transform, img_dir=IMG_DIR, label_dir=LABEL_DIR,
+        "/kaggle/input/bone-fracture-dataset-yolo/dataset/test.csv", transform=transform, img_dir=IMG_DIR, label_dir=LABEL_DIR,
     )
+
+    print('Loading dataloader!')
 
     train_loader = DataLoader(
         dataset=train_dataset,
@@ -107,7 +111,9 @@ def main():
         drop_last=True,
     )
 
+    print('Starts epochs!')
     for epoch in range(EPOCHS):
+        print(epoch)
         pred_boxes, target_boxes = get_bboxes(
             train_loader, model, iou_threshold=0.5, threshold=0.4
         )
