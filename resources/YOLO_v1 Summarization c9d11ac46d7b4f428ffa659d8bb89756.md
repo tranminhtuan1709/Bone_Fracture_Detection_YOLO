@@ -2,8 +2,6 @@
 
 Paper : https://arxiv.org/pdf/1506.02640
 
-- Table Of Contents
-
 # 1. Introduction
 
 YOLO_v1 is a new approach to object detection, it frames object detection as a single regression problem, straight from original images to coordinates of bounding boxes and respective class probabilities.
