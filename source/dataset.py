@@ -68,10 +68,8 @@ class VOCDataset(torch.utils.data.Dataset):
         # Read data in the label file.
         with open(label_path) as f:
             if len(f) == 0:
-                return (
-                    Image.open(os.path.join(self.img_dir, self.annotations.iloc[index, 0])),
-                    torch.zeros((self.S, self.S, self.C + 5 * self.B))
-                )
+                return Image.open(os.path.join(self.img_dir, self.annotations.iloc[index, 0])), torch.zeros((self.S, self.S, self.C + 5 * self.B))
+                
             
             for label in f.readlines():
                 class_label, x, y, width, height = [
