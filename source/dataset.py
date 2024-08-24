@@ -26,7 +26,7 @@ class VOCDataset(torch.utils.data.Dataset):
                 None
         '''
 
-        self.annotations = pd.read_csv(csv_file)
+        self.annotations = pd.read_csv(csv_file, header=None)
         self.img_dir = img_dir
         self.label_dir = label_dir
         self.transform = transform

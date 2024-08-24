@@ -267,11 +267,6 @@ def get_bboxes(
                 box_format=box_format,
             )
 
-
-            #if batch_idx == 0 and idx == 0:
-            #    plot_image(x[idx].permute(1,2,0).to("cpu"), nms_boxes)
-            #    print(nms_boxes)
-
             for nms_box in nms_boxes:
                 all_pred_boxes.append([train_idx] + nms_box)
 
@@ -338,7 +333,7 @@ def cellboxes_to_boxes(out, S=7):
 
     return all_bboxes
 
-def save_checkpoint(state, filename="/kaggle/working/my_checkpoint.pth"):
+def save_checkpoint(state, filename="/kaggle/working//my_checkpoint.pth"):
     print("=> Saving checkpoint")
     torch.save(state, filename)
 

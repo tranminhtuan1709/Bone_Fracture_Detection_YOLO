@@ -26,7 +26,7 @@ LEARNING_RATE = 2e-5
 DEVICE = "cuda"
 BATCH_SIZE = 64
 WEIGHT_DECAY = 0
-EPOCHS = 10
+EPOCHS = 100
 NUM_WORKERS = 2
 PIN_MEMORY = True
 LOAD_MODEL = False
@@ -108,6 +108,7 @@ def main():
     )
 
     for epoch in range(EPOCHS):
+        print(epoch)
         pred_boxes, target_boxes = get_bboxes(
             train_loader, model, iou_threshold=0.5, threshold=0.4
         )
