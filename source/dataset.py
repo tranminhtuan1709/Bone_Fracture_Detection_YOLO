@@ -74,7 +74,7 @@ class VOCDataset(torch.utils.data.Dataset):
                     for x in label.replace("\n", "").split()
                     ]
 
-                    boxes.append([class_label, x, y, width, height])
+                boxes.append([class_label, x, y, width, height])
 
         # Read image.
         img_path = os.path.join(self.img_dir, self.annotations.iloc[index, 0])
