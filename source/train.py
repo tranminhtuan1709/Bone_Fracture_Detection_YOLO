@@ -108,7 +108,6 @@ def main():
     )
 
     for epoch in range(EPOCHS):
-        print(epoch)
         pred_boxes, target_boxes = get_bboxes(
             train_loader, model, iou_threshold=0.5, threshold=0.4
         )
