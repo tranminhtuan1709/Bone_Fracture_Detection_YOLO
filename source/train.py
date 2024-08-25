@@ -112,6 +112,7 @@ def main():
     )
 
     print('Starts epochs!')
+    max_mAP = 0.0
     for epoch in range(EPOCHS):
         print(epoch)
         pred_boxes, target_boxes = get_bboxes(
@@ -122,10 +123,12 @@ def main():
             pred_boxes, target_boxes, iou_threshold=0.5, box_format="midpoint"
         )
         print(f"Train mAP: {mean_avg_prec}")
+        max_mAP = max(max_mAP, mean_avg_prec)
 
         train_fn(train_loader, model, optimizer, loss_fn)
     
     save_checkpoint(model.state_dict())
+    print('Highest mAP:', max_mAP)
 
 
 if __name__ == "__main__":
