@@ -124,6 +124,8 @@ def main():
         print(f"Train mAP: {mean_avg_prec}")
 
         train_fn(train_loader, model, optimizer, loss_fn)
+    
+    save_checkpoint(model.state_dict())
 
 
 if __name__ == "__main__":

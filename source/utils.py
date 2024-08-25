@@ -333,7 +333,7 @@ def cellboxes_to_boxes(out, S=7):
 
     return all_bboxes
 
-def save_checkpoint(state, filename="/kaggle/working/my_checkpoint.pth"):
+def save_checkpoint(state, filename="/kaggle/working/trained_model.pth"):
     print("=> Saving checkpoint")
     torch.save(state, filename)
 
